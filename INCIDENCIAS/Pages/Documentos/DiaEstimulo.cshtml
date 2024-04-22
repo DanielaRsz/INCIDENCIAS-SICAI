@@ -1,0 +1,109 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.DiasEstimuloModel
+@using INCiDENCIAS.Models
+
+@{
+    ViewData["Title"] = "Dia De Estimulo";
+}
+
+<h1>DiaEstimulo</h1>
+
+<h4>EstimuloDocumento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="DiasEstimuloDocumento.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @foreach (var unidad in Model.Unidades)
+                    {
+                        <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idDetalles">Empleado:</label>
+                <select class="form-control" id="idDetalles" asp-for="DiasEstimuloDocumento.IdDetalles">
+                    <option value="">Selecciona un empleado</option>
+                    @foreach (var empleado in ViewData["Empleados"] as List<AsignacionTiposEmpleado>)
+                    {
+                        <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="noRelojChecador">No Reloj Checador:</label>
+                <input type="text" class="form-control" id="noRelojChecador" asp-for="DiasEstimuloDocumento.NoRelojChecador">
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="tipoPeriodo">Tipo de Periodo:</label>
+                <select class="form-control" id="tipoPeriodo" asp-for="DiasEstimuloDocumento.TipoPeriodo">
+                    <option value="">Selecciona un tipo de periodo</option>
+                    <option value="Periodo1">Periodo 1</option>
+                    <option value="Periodo2">Periodo 2</option>
+                </select>
+            </div>
+           <!-- <div class="form-group">
+                <label for="indicadorEstimulo">Indicador de Estímulo:</label>
+                <input type="text" class="form-control" id="indicadorEstimulo" asp-for="DiasEstimuloDocumento.IndicadorEstimulo">
+            </div>-->
+           
+          
+
+            <div class="form-group">
+                <label for="anio">Año:</label>
+                <select class="form-control" id="anio" asp-for="DiasEstimuloDocumento.Anio">
+                    <!-- Agrega opciones de años aquí -->
+                    @for (int year = DateTime.Now.Year; year >= 2000; year--)
+                    {
+                        <option value="@year">@year</option>
+                    }
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" class="form-control" id="fecha" asp-for="DiasEstimuloDocumento.Fecha">
+            </div>
+
+           
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarEmpleados() {
+            var unidadSeleccionada = document.getElementById("idUnidad").value;
+            if (unidadSeleccionada !== "") {
+                $.ajax({
+                    url: '/Documentos/CargarEmpleados',
+                    type: 'GET',
+                    data: { idUnidad: unidadSeleccionada },
+                    success: function (data) {
+                        // Limpiar el DropDownList de empleados
+                        $('#idDetalles').empty();
+                        // Agregar las opciones de empleados
+                        $.each(data, function (index, empleado) {
+                            $('#idDetalles').append($('<option>').text(empleado.Nombre).attr('value', empleado.IdEmpleado));
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

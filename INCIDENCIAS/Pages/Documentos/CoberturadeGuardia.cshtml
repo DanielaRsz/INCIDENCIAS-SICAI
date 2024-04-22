@@ -1,0 +1,114 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.CoberturadeGuardiaModel
+@using INCiDENCIAS.Models
+
+@{
+    ViewData["Title"] = "CoberturadeGuardia";
+}
+
+<h1>CoberturadeGuardia</h1>
+
+<h4>GuardiaDocumento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="GuardiaDocumento.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @if (Model.Unidades != null)
+                    {
+                        foreach (var unidad in Model.Unidades)
+                        {
+                            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idEmpleadoACubrir">Empleado a Cubrir:</label>
+                <select class="form-control" id="idEmpleadoACubrir" asp-for="GuardiaDocumento.EmpleadoAcubrirId">
+                    <option value="">Selecciona un empleado a cubrir</option>
+                    @if (ViewData["Empleados"] is List<AsignacionTiposEmpleado> empleados)
+                    {
+                        foreach (var empleado in empleados)
+                        {
+                            <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                        }
+                    }
+                </select>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="noRelojChecador">No Reloj Checador:</label>
+                <input type="text" class="form-control" id="noRelojChecador" asp-for="GuardiaDocumento.NoRelojChecador">
+            </div>
+
+            <div class="form-group">
+                <label for="idEmpleadoSustituto">Empleado Sustituto:</label>
+                <select class="form-control" id="idEmpleadoSustituto" asp-for="GuardiaDocumento.EmpleadoSustitutoId">
+                    <option value="">Selecciona un empleado sustituto</option>
+                    @if (ViewData["Empleados"] is List<AsignacionTiposEmpleado> empleados)
+                    {
+                        foreach (var empleado in empleados)
+                        {
+                            <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                        }
+                    }
+                </select>
+            </div>
+
+           
+
+            <div class="form-group">
+                <label for="noRelojChecador">No Reloj Checador:</label>
+                <input type="text" class="form-control" id="noRelojChecador" asp-for="GuardiaDocumento.NoRelojChecador">
+            </div>
+
+            <div class="form-group">
+                <label for="Fecha">Fecha:</label>
+                <input type="date" class="form-control" id="Fecha" asp-for="GuardiaDocumento.Fecha">
+            </div>
+            <div class="form-group">
+                <label for="Motivo">Motivo:</label>
+                <input type="text" class="form-control" id="Motivo" asp-for="GuardiaDocumento.Motivo">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarEmpleados() {
+            var unidadSeleccionada = document.getElementById("idUnidad").value;
+            if (unidadSeleccionada !== "") {
+                $.ajax({
+                    url: '/Documentos/CargarEmpleados',
+                    type: 'GET',
+                    data: { idUnidad: unidadSeleccionada },
+                    success: function (data) {
+                        $('#idEmpleadoACubrir').empty();
+                        $('#idEmpleadoSustituto').empty(); // Limpiar el dropdown de empleado sustituto
+                        $.each(data, function (index, empleado) {
+                            $('#idEmpleadoACubrir').append($('<option>').text(empleado.Nombre).attr('value', empleado.Id));
+                            $('#idEmpleadoSustituto').append($('<option>').text(empleado.Nombre).attr('value', empleado.Id)); // Agregar opción de empleado sustituto
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

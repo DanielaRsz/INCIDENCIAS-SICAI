@@ -1,0 +1,44 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.VacacionesModel
+@{
+    ViewData["Title"] = "Solicitud de Vacaciones";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h3>Bienvenido al apartado de solicitud de Vacaciones. </h3>
+<form method="post">
+    <select class="form-control" id="unidad" asp-for="VacacionesDocumento.IdUnidad">
+        <option value="">Selecciona una unidad</option>
+        @foreach (var unidad in Model.Unidades)
+        {
+            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+        }
+    </select>
+
+    <div class="form-group">
+        <label for="numeroChecador">Número de Reloj Checador:</label>
+        <input type="text" class="form-control" id="numeroChecador" asp-for="VacacionesDocumento.NumeroChecador">
+    </div>
+    <div class="form-group">
+        <label for="tipoVacaciones">Tipo de Vacaciones:</label>
+        <select class="form-control" id="tipoVacaciones" asp-for="VacacionesDocumento.TipoVacaciones">
+            <option value="">Selecciona un tipo de vacaciones</option>
+            <option value="Tipo1">Tipo 1</option>
+            <option value="Tipo2">Tipo 2</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" class="form-control" id="fechaInicio" asp-for="VacacionesDocumento.FechaInicio">
+    </div>
+    <div class="form-group">
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input type="date" class="form-control" id="fechaFin" asp-for="VacacionesDocumento.FechaFin">
+    </div>
+    <div class="form-group">
+        <label for="anio">Año:</label>
+        <input type="int" class="form-control" id="anio" asp-for="VacacionesDocumento.Anio">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>

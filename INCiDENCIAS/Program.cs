@@ -1,6 +1,15 @@
+using INCiDENCIAS.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Obtener la cadena de conexión
+var connectionString = builder.Configuration.GetConnectionString("ConnectionSQL");
+
 // Add services to the container.
+builder.Services.AddDbContext<INCIDENCIAS1Context>(options =>
+    options.UseSqlServer(connectionString)); // Utiliza la cadena de conexión aquí
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

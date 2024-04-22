@@ -1,10 +1,23 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Te damos la bienvenida";
+
+    var partOfDay = "¡Muy buen día!";
+    if (DateTime.Now.Hour > 12)
+    {
+        partOfDay = "¡Muy buena tarde!";
+    }
+    else if (DateTime.Now.Hour > 18)
+    {
+        partOfDay = "¡Muy buena noche!";
+    }
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Te damos la bienvenida al Sistema de Incidencias de la DGRH</h1>
+    <p></p>
+    <!-- <img src="images/LogotipoColor.svg" alt="Imagen de DAP" width="500" />-->
+    <p></p>
+    <p> @partOfDay Hoy es @DateTime.Now.ToString("dddd, dd MMMM yyyy") y son las @DateTime.Now.ToString("HH:mm:ss")</p>
 </div>

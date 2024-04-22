@@ -16,6 +16,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\danie\OneDrive\Documentos\SAHIR2.0\INCIDENCIAS WEB\INCiDENCIAS\INCiDENCIAS
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/CoberturadeGuardia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xDb2JlcnR1cmFkZUd1YXJkaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/DiaEstimulo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xEaWFFc3RpbXVsby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/DiaFeriado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xEaWFGZXJpYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/EstimuloHoras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xFc3RpbXVsb0hvcmFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/Incapacidades.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xJbmNhcGFjaWRhZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/JustificacionFN.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xKdXN0aWZpY2FjaW9uRk4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/JustificaionesVarias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xKdXN0aWZpY2Fpb25lc1Zhcmlhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/Licencias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xMaWNlbmNpYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/PasesDeSalida.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xQYXNlc0RlU2FsaWRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Documentos/Vacaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdW1lbnRvc1xWYWNhY2lvbmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/danie/OneDrive/Documentos/SAHIR2.0/INCIDENCIAS WEB/INCiDENCIAS/INCiDENCIAS/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

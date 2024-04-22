@@ -1,0 +1,110 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.IncapacidadesModel
+@using INCiDENCIAS.Models
+
+@{
+    ViewData["Title"] = "Incapacidades";
+}
+
+<h1>Incapacidades</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="IncapacidadesDocumento.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @foreach (var unidad in Model.Unidades)
+                    {
+                        <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idDetalles">Empleado:</label>
+                <select class="form-control" id="idDetalles" asp-for="IncapacidadesDocumento.IdDetalles">
+                    <option value="">Selecciona un empleado</option>
+                    @foreach (var empleado in ViewData["Empleados"] as List<AsignacionTiposEmpleado>)
+                    {
+                        <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                    }
+                </select>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="IncapacidadesDocumento">Tipo de Incapacidad:</label>
+                <select class="form-control" id="TipoIncapacidad" asp-for="IncapacidadesDocumento.TipoIncapacidad">
+                    <option value="Selecciona un de Tipo de Incapacidad">Selecciona un  de Tipo de Incapacidad</option>
+                    <option value="Accidentedetrabajo ">Accidente de trabajo</option>
+                    <option value="Cuidadosmaternos">Cuidados maternos</option>
+                    <option value="EnfermedadGeneral">Enfermedad General</option>
+                    <option value="PreyPostnatal">Pre y Post natal</option>
+                    <option value="RiesgoDeTrabajo">RiesgoDeTrabajo</option>
+
+
+                </select>
+            </div>
+
+        
+         
+            <div class="form-group">
+                <label for="HoraInicio">Fecha Inicio:</label>
+                <input type="text" class="form-control" id="FInicio" asp-for="IncapacidadesDocumento.FInicio">
+            </div>
+            <div class="form-group">
+                <label for="HoraFin">Fecha Fin:</label>
+                <input type="text" class="form-control" id="FFinal" asp-for="IncapacidadesDocumento.FFinal">
+            </div>
+            <div class="form-group">
+                <label for="IdMedicos">Medico:</label>
+                <input type="text" class="form-control" id="IdMedicos" asp-for="IncapacidadesDocumento.IdMedicos">
+            </div>
+            <div class="form-group">
+                <label asp-for="IncapacidadesDocumento.IndicadorIncapacidad" class="control-label"></label>
+                <input asp-for="IncapacidadesDocumento.IndicadorIncapacidad" class="form-control" />
+                <span asp-validation-for="IncapacidadesDocumento.IndicadorIncapacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Diagnosticos">Diagnostico:</label>
+                <input type="text" class="form-control" id="Diagnosticos" asp-for="IncapacidadesDocumento.Diagnosticos">
+            </div>
+       
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarEmpleados() {
+            var unidadSeleccionada = document.getElementById("idUnidad").value;
+            if (unidadSeleccionada !== "") {
+                $.ajax({
+                    url: '/Documentos/CargarEmpleados',
+                    type: 'GET',
+                    data: { idUnidad: unidadSeleccionada },
+                    success: function (data) {
+                        // Limpiar el DropDownList de empleados
+                        $('#idDetalles').empty();
+                        // Agregar las opciones de empleados
+                        $.each(data, function (index, empleado) {
+                            $('#idDetalles').append($('<option>').text(empleado.Nombre).attr('value', empleado.IdEmpleado));
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

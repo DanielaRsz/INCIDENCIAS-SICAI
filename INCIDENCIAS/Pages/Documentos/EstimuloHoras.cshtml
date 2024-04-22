@@ -1,0 +1,100 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.EstimuloHorasModel
+@using INCiDENCIAS.Models
+@{
+    ViewData["Title"] = "EstimuloHoras";
+}
+
+<h1>Estimulo Por Horas Extras</h1>
+
+<h4>Estimulo Por Horas Extras</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="EstimuloHorasExtra.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @if (Model.Unidades != null)
+                    {
+                        foreach (var unidad in Model.Unidades)
+                        {
+                            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idDetalles">Empleado:</label>
+                <select class="form-control" id="idDetalles" asp-for="EstimuloHorasExtra.IdDetalles">
+                    <option value="">Selecciona un empleado</option>
+                    @if (ViewData["Empleados"] is List<AsignacionTiposEmpleado> empleados)
+                    {
+                        foreach (var empleado in empleados)
+                        {
+                            <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Horas">Horas:</label>
+                <input type="text" class="form-control" id="Horas" asp-for="EstimuloHorasExtra.Horas">
+            </div>
+            <div class="form-group">
+                <label for="TipoPago">Tipo de Pago:</label>
+                <input type="text" class="form-control" id="TipoPago" asp-for="EstimuloHorasExtra.TipoPago">
+            </div>
+
+            <div class="form-group">
+                <label for="FInicicio">Fecha Inicio:</label>
+                <input type="date" class="form-control" id="FInicicio" asp-for="EstimuloHorasExtra.FInicicio">
+            </div>
+            <div class="form-group">
+                <label for="FFin">Fecha Fin:</label>
+                <input type="date" class="form-control" id="FFin" asp-for="EstimuloHorasExtra.FFin">
+            </div>
+            <div class="form-group">
+                <label for="Motivo">Motivo:</label>
+                <input type="text" class="form-control" id="Motivo" asp-for="EstimuloHorasExtra.Motivo">
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarEmpleados() {
+            var unidadSeleccionada = document.getElementById("idUnidad").value;
+            if (unidadSeleccionada !== "") {
+                $.ajax({
+                    url: '/Documentos/CargarEmpleados',
+                    type: 'GET',
+                    data: { idUnidad: unidadSeleccionada },
+                    success: function (data) {
+                        // Limpiar el DropDownList de empleados
+                        $('#idDetalles').empty();
+                        // Agregar las opciones de empleados
+                        $.each(data, function (index, empleado) {
+                            $('#idDetalles').append($('<option>').text(empleado.Nombre).attr('value', empleado.IdEmpleado));
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

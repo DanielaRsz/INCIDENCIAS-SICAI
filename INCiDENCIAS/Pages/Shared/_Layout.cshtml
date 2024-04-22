@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - INCiDENCIAS</title>
+    <title>@ViewData["Title"] - SICAI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/INCiDENCIAS.styles.css" asp-append-version="true" />
@@ -12,18 +12,64 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">INCiDENCIAS</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">SICAI</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuDocumentos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Documentos
+                            </a>
+
+
+                            
+
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuDocumentos">
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/Vacaciones">Vacaciones </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/Licencias">Licencias</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/DiaEstimulo">Día de Estímulo</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/DiaFeriado">Día Feriado</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/EstimuloHoras">Estimulo por horas extra</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/JustificaionesVarias">Justificacion (RM, OE, OS, JA)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/JustificacionFN">Justificacion (Fuera de Norma)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/PasesDeSalida</">Pases de salida</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/CoberturadeGuardia">Cobertura de guardia</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/Incapacidades">Incapacidades</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/DiasEconomicos">Días Economicos</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/ComisionPorHoras">Comision por horas</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/ComisionPorDias">Comision por dias </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Documentos/SolicitudHorasExtras">Solicitud de horas extras</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuEmpleados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Empleados
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuEmpleados">
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/DocumentosCaptura">Documentos de Captura</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/Incidencias">Incidencias</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/Incidencias">Justificacion Masiva (F. norma)</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/Incidencias">Justificacion Masiva (Acta)</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/Incidencias">Horas concedidas</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-page="/Empleados/Incidencias">Días concedidos</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +84,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - INCiDENCIAS - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2024 - INCIDENCIAS - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

@@ -1,0 +1,96 @@
+﻿@page
+@using INCiDENCIAS.Models;
+@model INCiDENCIAS.Pages.Documentos.DiaFeriadoModel
+
+@{
+    ViewData["Title"] = "Dia Feriado";
+}
+
+<h1>Dia Feriado</h1>
+
+<h4>DiaFeriadoDocumento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="DiasFeriadoDocumentos.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @if (Model.Unidades != null)
+                    {
+                        foreach (var unidad in Model.Unidades)
+                        {
+                            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="idDetalles">Empleado:</label>
+                <select class="form-control" id="idDetalles" asp-for="DiasFeriadoDocumentos.IdDetalles">
+                    <option value="">Selecciona un empleado</option>
+                    @if (ViewData["Empleados"] is List<AsignacionTiposEmpleado> empleados)
+                    {
+                        foreach (var empleado in empleados)
+                        {
+                            <option value="@empleado.IdTipoEmpleado">@empleado.Descripcion</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="noRelojChecador">No. Reloj Checador:</label>
+                <input type="text" class="form-control" id="NoRelojChecador" asp-for="DiasFeriadoDocumentos.NoRelojChecador">
+            </div>
+
+            <div class="form-group">
+                <label for="FAutoriza">Fecha Autorizada:</label>
+                <input type="date" class="form-control" id="FAutoriza" asp-for="DiasFeriadoDocumentos.FAutoriza">
+            </div>
+            <div class="form-group">
+                <label for="FTrabaja">Fecha Trabajada:</label>
+                <input type="date" class="form-control" id="FTrabaja" asp-for="DiasFeriadoDocumentos.FTrabaja">
+            </div>
+            <div class="form-group">
+                <label for="Motivo">Motivo:</label>
+                <input type="text" class="form-control" id="Motivo" asp-for="DiasFeriadoDocumentos.Motivo">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        function cargarEmpleados() {
+            var unidadSeleccionada = document.getElementById("idUnidad").value;
+            if (unidadSeleccionada !== "") {
+                $.ajax({
+                    url: '/Documentos/CargarEmpleados',
+                    type: 'GET',
+                    data: { idUnidad: unidadSeleccionada },
+                    success: function (data) {
+                        // Limpiar el DropDownList de empleados
+                        $('#idDetalles').empty();
+                        // Agregar las opciones de empleados
+                        $.each(data, function (index, empleado) {
+                            $('#idDetalles').append($('<option>').text(empleado.Descripcion).attr('value', empleado.IdTipoEmpleado));
+                        });
+                    }
+                });
+            }
+        }
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
