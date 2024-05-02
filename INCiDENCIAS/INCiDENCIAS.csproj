@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Empleados\BusquedaDocumentos.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.29" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.29">
       <PrivateAssets>all</PrivateAssets>
@@ -16,7 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Empleados\" />
+    <UpToDateCheckInput Remove="Pages\Empleados\BusquedaDocumentos.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Empleados\BusquedaDocumentos.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Empleados\BusquedaDocumentos.cshtml" />
   </ItemGroup>
 
 </Project>
