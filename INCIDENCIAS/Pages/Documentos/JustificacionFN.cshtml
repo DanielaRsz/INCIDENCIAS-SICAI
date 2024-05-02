@@ -14,14 +14,11 @@
         <form method="post">
             <div class="form-group">
                 <label for="idUnidad">Unidad:</label>
-                <select class="form-control" id="idUnidad" asp-for="JustificacionDocumento.IdUnidad" onchange="cargarEmpleados()">
+                <select class="form-control" id="unidad" asp-for="JustificacionDocumento.IdUnidad">
                     <option value="">Selecciona una unidad</option>
-                    @if (Model.Unidades != null)
+                    @foreach (var unidad in Model.Unidades)
                     {
-                        foreach (var unidad in Model.Unidades)
-                        {
-                            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
-                        }
+                        <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
                     }
                 </select>
             </div>

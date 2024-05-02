@@ -10,8 +10,8 @@ namespace INCiDENCIAS.Models
         public DateTime? FAutoriza { get; set; }
         public string? Motivo { get; set; }
         public int? NucEmpleado { get; set; }
-        public int? IdDetalles { get; set; }
-        public int IdUnidad { get; set; }
         public string? NoRelojChecador { get; set; }
+        public int? IdDetalles { get; set; }
+        public int? IdUnidad { get; set; }
     }
 }

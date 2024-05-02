@@ -1,0 +1,60 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.ComisionPorDiasModel
+@using INCiDENCIAS.Models
+
+@{
+    ViewData["Title"] = "ComisionPorDias";
+}
+
+<h1>ComisionPorDias</h1>
+
+<h4>ComisionesDocumento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+ 
+            <select class="form-control" id="unidad" asp-for="ComisionesDocumento.IdUnidad">
+                <option value="">Selecciona una unidad</option>
+                @foreach (var unidad in Model.Unidades)
+                {
+                    <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                }
+            </select>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ComisionesDocumento.TipoComision" class="control-label"></label>
+                <select asp-for="ComisionesDocumento.TipoComision" class="form-control">
+                    <option value="">Selecciona un tipo de comisión</option>
+                    <option value="Oficial">Oficial</option>
+                    <option value="Sindical">Sindical</option>
+                </select>
+                <span asp-validation-for="ComisionesDocumento.TipoComision" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="FechaInicio">Fecha Inicio:</label>
+                <input type="date" class="form-control" id="FInicio" asp-for="ComisionesDocumento.FechaInicio">
+            </div>
+            <div class="form-group">
+                <label for="FechaFin">Fecha Fin:</label>
+                <input type="date" class="form-control" id="FFinal" asp-for="ComisionesDocumento.FechaFin">
+            </div>
+            <div class="form-group">
+                <label for="Motivo">Motivo/N° Oficio:</label>
+                <input type="text" class="form-control" id="FFinal" asp-for="ComisionesDocumento.Motivo">
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

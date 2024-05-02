@@ -19,7 +19,8 @@ namespace INCiDENCIAS.Models
         public string? Motivo { get; set; }
         public int? EmpleadoAcubrirId { get; set; }
         public int? EmpleadoSustitutoId { get; set; }
-        public int IdUnidad { get; set; }
+        public int? IdUnidad { get; set; }
+
         public virtual DocumentosDetalle? IdDetallesNavigation { get; set; }
         public virtual ICollection<Documento> Documentos { get; set; }
     }

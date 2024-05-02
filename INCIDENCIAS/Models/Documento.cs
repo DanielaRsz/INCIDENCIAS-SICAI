@@ -37,7 +37,8 @@ namespace INCiDENCIAS.Models
         public string? HoraInicio { get; set; }
         public string? HoraFin { get; set; }
         public int? IdUnidad { get; set; }
-
+        public string? Motivo { get; set; }
+        public bool? InicioDiaSiguiente { get; set; }
         public virtual ComisionesDocumento? IdComisionesNavigation { get; set; }
         public virtual DocumentosDetalle? IdDetallesNavigation { get; set; }
         public virtual DiasDocumento? IdDiasDocumentosNavigation { get; set; }

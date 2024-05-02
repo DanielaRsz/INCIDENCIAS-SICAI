@@ -617,9 +617,19 @@ namespace INCiDENCIAS.Models
 
                 entity.Property(e => e.IdDiaDocumento).HasColumnName("Id_Dia_Documento");
 
+                entity.Property(e => e.Fecha).HasColumnType("date");
+
+                entity.Property(e => e.IdChecador).HasColumnName("Id_Checador");
+
                 entity.Property(e => e.IdDetalles).HasColumnName("Id_detalles");
 
                 entity.Property(e => e.IndicadorDia).HasColumnName("Indicador_Dia");
+
+                entity.Property(e => e.Motivo)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NucEmpleado).HasColumnName("Nuc_Empleado");
 
                 entity.Property(e => e.TipoDia)
                     .HasMaxLength(255)
@@ -676,6 +686,10 @@ namespace INCiDENCIAS.Models
                 entity.Property(e => e.FTrabaja)
                     .HasColumnType("date")
                     .HasColumnName("F_trabaja");
+
+                entity.Property(e => e.IdDetalles).HasColumnName("Id_Detalles");
+
+                entity.Property(e => e.IdUnidad).HasColumnName("Id_unidad");
 
                 entity.Property(e => e.Motivo)
                     .HasMaxLength(255)
@@ -911,6 +925,8 @@ namespace INCiDENCIAS.Models
                 entity.Property(e => e.Fecha).HasColumnType("date");
 
                 entity.Property(e => e.IdDetalles).HasColumnName("Id_detalles");
+
+                entity.Property(e => e.IdUnidad).HasColumnName("Id_Unidad");
 
                 entity.Property(e => e.IndicadorGuardia).HasColumnName("Indicador_Guardia");
 

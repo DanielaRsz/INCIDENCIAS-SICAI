@@ -10,27 +10,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace INCiDENCIAS.Pages.Documentos
 {
-    public class IncapacidadesModel : PageModel
+    public class SolicitudDeHorasExtrasModel : PageModel
     {
         private readonly INCiDENCIAS.Models.INCIDENCIAS1Context _context;
 
-        public IncapacidadesModel(INCiDENCIAS.Models.INCIDENCIAS1Context context)
+        public SolicitudDeHorasExtrasModel(INCiDENCIAS.Models.INCIDENCIAS1Context context)
         {
             _context = context;
         }
-
-        public IActionResult OnGet()
-        {
-            ViewData["IdDetalles"] = new SelectList(_context.DocumentosDetalles, "IdDocumentosDetalle", "IdDocumentosDetalle");
-            Unidades = _context.Unidades.ToList();
-            ViewData["Empleados"] = ObtenerListaEmpleados();
-            return Page();
-        }
-
-
         public List<Unidade> Unidades { get; set; }
 
-       
+    
 
         // Método para obtener la lista de empleados
         private List<AsignacionTiposEmpleado> ObtenerListaEmpleados()
@@ -58,19 +48,38 @@ namespace INCiDENCIAS.Pages.Documentos
             }
         }
 
+
+        public async Task<IActionResult> OnGet()
+        {
+            Unidades = await _context.Unidades.ToListAsync();
+            ViewData["Empleados"] = ObtenerListaEmpleados();
+            ViewData["IdComisiones"] = new SelectList(_context.ComisionesDocumentos, "IdComisiones", "IdComisiones");
+            ViewData["IdDetalles"] = new SelectList(_context.DocumentosDetalles, "IdDocumentosDetalle", "IdDocumentosDetalle");
+            ViewData["IdDiasDocumentos"] = new SelectList(_context.DiasDocumentos, "IdDiaDocumento", "IdDiaDocumento");
+            ViewData["IdEstimulo"] = new SelectList(_context.EstimuloDocumentos, "IdEstimulo", "IdEstimulo");
+            ViewData["IdGuardia"] = new SelectList(_context.GuardiaDocumentos, "IdGuardia", "IdGuardia");
+            ViewData["IdIncapacidades"] = new SelectList(_context.IncapacidadesDocumentos, "IdIncapacidades", "IdIncapacidades");
+            ViewData["IdJustificacion"] = new SelectList(_context.JustificacionDocumentos, "IdJustificacion", "IdJustificacion");
+            ViewData["IdLicencias"] = new SelectList(_context.LicenciasDocumentos, "IdLicencia", "IdLicencia");
+            ViewData["IdRetardo"] = new SelectList(_context.RetardoDocumentos, "IdRetardo", "IdRetardo");
+            ViewData["IdVacaciones"] = new SelectList(_context.VacacionesDocumentos, "IdVacaciones", "IdVacaciones");
+            return Page();
+        }
+
+
         [BindProperty]
-        public IncapacidadesDocumento IncapacidadesDocumento { get; set; } = default!;
+        public Documento Documento { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.IncapacidadesDocumentos == null || IncapacidadesDocumento == null)
+          if (!ModelState.IsValid || _context.Documentos == null || Documento == null)
             {
                 return Page();
             }
 
-            _context.IncapacidadesDocumentos.Add(IncapacidadesDocumento);
+            _context.Documentos.Add(Documento);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

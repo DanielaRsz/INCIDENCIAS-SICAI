@@ -41,7 +41,7 @@
                     <option value="Cuidadosmaternos">Cuidados maternos</option>
                     <option value="EnfermedadGeneral">Enfermedad General</option>
                     <option value="PreyPostnatal">Pre y Post natal</option>
-                    <option value="RiesgoDeTrabajo">RiesgoDeTrabajo</option>
+                    <option value="RiesgoDeTrabajo">Riesgo De Trabajo</option>
 
 
                 </select>
@@ -50,22 +50,22 @@
         
          
             <div class="form-group">
-                <label for="HoraInicio">Fecha Inicio:</label>
+                <label for="FechaInicio">Fecha Inicio:</label>
                 <input type="text" class="form-control" id="FInicio" asp-for="IncapacidadesDocumento.FInicio">
             </div>
             <div class="form-group">
-                <label for="HoraFin">Fecha Fin:</label>
+                <label for="FechaFin">Fecha Fin:</label>
                 <input type="text" class="form-control" id="FFinal" asp-for="IncapacidadesDocumento.FFinal">
             </div>
             <div class="form-group">
                 <label for="IdMedicos">Medico:</label>
                 <input type="text" class="form-control" id="IdMedicos" asp-for="IncapacidadesDocumento.IdMedicos">
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label asp-for="IncapacidadesDocumento.IndicadorIncapacidad" class="control-label"></label>
                 <input asp-for="IncapacidadesDocumento.IndicadorIncapacidad" class="form-control" />
                 <span asp-validation-for="IncapacidadesDocumento.IndicadorIncapacidad" class="text-danger"></span>
-            </div>
+            </div>-->
             <div class="form-group">
                 <label for="Diagnosticos">Diagnostico:</label>
                 <input type="text" class="form-control" id="Diagnosticos" asp-for="IncapacidadesDocumento.Diagnosticos">

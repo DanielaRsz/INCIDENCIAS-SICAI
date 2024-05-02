@@ -1,0 +1,93 @@
+﻿@page
+@model INCiDENCIAS.Pages.Documentos.SolicitudDeHorasExtrasModel
+@using INCiDENCIAS.Models
+
+@{
+    ViewData["Title"] = "SolicitudDeHorasExtras";
+}
+
+<h1>SolicitudDeHorasExtras</h1>
+
+<h4>Documento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Documento.NombreDocumento" class="control-label"></label>
+                <label for="idUnidad">Unidad:</label>
+                <select class="form-control" id="idUnidad" asp-for="Documento.IdUnidad" onchange="cargarEmpleados()">
+                    <option value="">Selecciona una unidad</option>
+                    @if (Model.Unidades != null)
+                    {
+                        foreach (var unidad in Model.Unidades)
+                        {
+                            <option value="@unidad.IdUnidad">@unidad.NombreUnidad</option>
+                        }
+                    }
+                </select>
+
+                <div class="form-group">
+                    <label for="idDetalles">Empleado:</label>
+                    <select class="form-control" id="idDetalles" asp-for="Documento.IdDetalles">
+                        <option value="">Selecciona un empleado</option>
+                        @if (ViewData["Empleados"] is List<AsignacionTiposEmpleado> empleados)
+                        {
+                            foreach (var empleado in empleados)
+                            {
+                                <option value="@empleado.NucEmpleados">@empleado.NucEmpleados</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Fecha">Fecha:</label>
+                    <input type="date" class="form-control" id="Fecha" asp-for="Documento.Fecha">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Documento.Fecha" class="control-label"></label>
+                    <input asp-for="Documento.Fecha" class="form-control" />
+                    <span asp-validation-for="Documento.Fecha" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento.HoraInicio" class="control-label">Hora Inicio:</label>
+                    <input asp-for="Documento.HoraInicio" class="form-control" />
+                    <span asp-validation-for="Documento.HoraInicio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Documento.HoraFin" class="control-label">Hora Fin:</label>
+                    <input asp-for="Documento.HoraFin" class="form-control" />
+                    <span asp-validation-for="Documento.HoraFin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Motivo">Motivo:</label>
+                    <input type="text" class="form-control" id="Motivo" asp-for="Documento.Motivo">
+                </div>
+
+                <div class="form-group">
+                    <label for="InicioDiaSiguiente">Inicio Dia Siguiente:</label>
+                    @{
+                        bool inicioDiaSiguiente = Model.Documento != null && Model.Documento.InicioDiaSiguiente.HasValue ? Model.Documento.InicioDiaSiguiente.Value : false;
+                    }
+                    <input type="checkbox" class="form-control" id="IdMedicos" checked="@inicioDiaSiguiente" />
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+
+</div>
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
